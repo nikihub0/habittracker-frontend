@@ -7,7 +7,6 @@ import Footer from "./components/Footer";
 import Register from "./components/Register";
 import Welcome from "./components/Welcome";
 import SigninForm from "./components/SigninForm";
-import HabitBoard from "./components/HabitBoard";
 import Home from "./components/Home";
 
 function App() {

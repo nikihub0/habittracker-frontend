@@ -16,6 +16,15 @@ const Home = ({ goodhabits, badhabits }) => {
   const [gHabits, setGHabits] = useState([]);
   const [showHabits, setShowHabits] = useState(null);
 
+  const handleDeleteGhabits = (id) => {
+    const newList = gHabits.filter((gh) => gh.id !== id);
+    setGHabits(newList);
+  };
+  const handleDeleteBhabits = (id) => {
+    const newList = bHabits.filter((bh) => bh.id !== id);
+    setBHabits(newList);
+  };
+
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   /*const handleSelectghabit = () => {
@@ -108,7 +117,12 @@ const Home = ({ goodhabits, badhabits }) => {
           </ul>
         </Col>
         <Col>
-          <HabitBoard gHabits={gHabits} bHabits={bHabits} />
+          <HabitBoard
+            gHabits={gHabits}
+            bHabits={bHabits}
+            handleDeleteGhabits={handleDeleteGhabits}
+            handleDeleteBhabits={handleDeleteBhabits}
+          />
         </Col>
       </Row>
 

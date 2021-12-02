@@ -1,12 +1,15 @@
 import React from "react";
 import Button from "react-bootstrap/Button";
-import Form from "react-bootstrap/Form";
+//import Form from "react-bootstrap/Form";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
-import { useState } from "react";
+//import { useState } from "react";
 
-const HabitBoard = ({ gHabits, bHabits }) => {
-  const handleDelete = () => {};
-
+const HabitBoard = ({
+  gHabits,
+  bHabits,
+  handleDeleteGhabits,
+  handleDeleteBhabits,
+}) => {
   return (
     <div className="board border rounded p-4 my-5 mx-3 d-flex justify-content-center">
       {!gHabits.length && !bHabits.length && <div>Please select a habit</div>}
@@ -27,10 +30,16 @@ const HabitBoard = ({ gHabits, bHabits }) => {
                 </div>
               ))}
             </Form> */}
-              <ButtonGroup className="d-flex " aria-label="Basic example">
+              <ButtonGroup
+                className="d-flex justify-content-end "
+                aria-label="Basic example"
+              >
                 <Button variant="success">Left</Button>
                 <Button variant="primary">Middle</Button>
-                <Button variant="danger" onClick={() => handleDelete()}>
+                <Button
+                  variant="danger"
+                  onClick={() => handleDeleteGhabits(gh.id)}
+                >
                   Right
                 </Button>
               </ButtonGroup>
@@ -47,7 +56,12 @@ const HabitBoard = ({ gHabits, bHabits }) => {
                 <ButtonGroup className="d-flex " aria-label="Basic example">
                   <Button variant="success">Left</Button>
                   <Button variant="primary">Middle</Button>
-                  <Button variant="danger">Right</Button>
+                  <Button
+                    variant="danger"
+                    onClick={() => handleDeleteBhabits(bh.id)}
+                  >
+                    Delete
+                  </Button>
                 </ButtonGroup>
               </li>
             ))}
