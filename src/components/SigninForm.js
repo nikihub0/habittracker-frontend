@@ -1,12 +1,14 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext";
 
 const SigninForm = () => {
   const [textinput, settextinput] = useState("");
   const [pwinput, setpwinput] = useState("");
-  const [loggedIn, setLoggedIn] = useState(false);
+  const { setLoggedIn, loggedIn, user, setUser } = useContext(AuthContext);
+
   let navigate = useNavigate();
 
   const handleClick = (e) => {
@@ -23,10 +25,12 @@ const SigninForm = () => {
       .then((data) => {
         if (data.email) {
           setLoggedIn(true);
+
+          setUser({ id: data.id, email: data.email });
           navigate("/home");
         } else {
           //navigate back to registration
-          console.log("nicht eingelogged");
+
           navigate("/registration");
         }
       })

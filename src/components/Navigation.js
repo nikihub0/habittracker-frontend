@@ -1,43 +1,70 @@
-import React from "react";
+import React, { useContext } from "react";
 import Navbar from "react-bootstrap/Navbar";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 //import NavDropdown from "react-bootstrap/NavDropdown";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext";
+import Button from "react-bootstrap/Button";
+import { FaRegUserCircle } from "react-icons/fa";
+import NavDropdown from "react-bootstrap/NavDropdown";
 
 const Navigation = () => {
+  const { loggedIn, setLoggedIn, user, setUser } = useContext(AuthContext);
+
   let navigate = useNavigate();
-
-  const goBacktoWelcome = (e) => {
-    console.log("You clicked back to welcome.");
-    navigate("/welcome");
-  };
-
-  const goToSigninForm = (e) => {
-    console.log("You clicked sign in.");
+  const handleLogOut = () => {
+    setLoggedIn(false);
+    setUser(null);
     navigate("/signin");
   };
   return (
     <Navbar fixed="top" bg="light" expand="lg">
       <Container>
-        <Navbar.Brand href="#home" onClick={goBacktoWelcome}>
+        <Navbar.Brand as={Link} to="/home">
           Break Your Habits
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="/home">Home</Nav.Link>
-            <Nav.Link href="/profil">Profil</Nav.Link>
-            <Nav.Link href="/info">Info</Nav.Link>
-
             {/*<NavDropdown title="Heute" id="basic-nav-dropdown">
-              <NavDropdown.Item href="/woche">Diese Woche</NavDropdown.Item>
+              
               <NavDropdown.Item href="/monat">Diesen Monat</NavDropdown.Item>
               <NavDropdown.Item href="/heute">Heute</NavDropdown.Item>
             </NavDropdown>*/}
-            <Nav.Link href="/signin" onClick={goToSigninForm}>
-              Anmelden
-            </Nav.Link>
+            {!loggedIn && (
+              <>
+                <Button variant="outline-primary" as={Link} to="/signin">
+                  Anmelden
+                </Button>
+                <Button as={Link} to="/registration">
+                  Registrieren
+                </Button>
+              </>
+            )}
+            {loggedIn && (
+              <>
+                <Nav.Link as={Link} to="/home">
+                  Home
+                </Nav.Link>
+
+                <Nav.Link as={Link} to="/info">
+                  Info
+                </Nav.Link>
+
+                <NavDropdown
+                  title={<FaRegUserCircle />}
+                  id="basic-nav-dropdown"
+                >
+                  <NavDropdown.Item as={Link} to="/profil">
+                    Profil
+                  </NavDropdown.Item>
+                  <NavDropdown.Item onClick={handleLogOut}>
+                    Logout
+                  </NavDropdown.Item>
+                </NavDropdown>
+              </>
+            )}
           </Nav>
         </Navbar.Collapse>
       </Container>

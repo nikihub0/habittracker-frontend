@@ -36,14 +36,10 @@ const Home = ({ goodhabits, badhabits }) => {
     goodhabits.slice(index * 2, index * 2 + 2)
   );
 
-  console.log(gHabits);
-
   const brows = [...Array(Math.ceil(badhabits.length / 2))];
   const bhabitRows = brows.map((row, index) =>
     badhabits.slice(index * 2, index * 2 + 2)
   );
-
-  console.log(bHabits);
 
   // post machen mit gHabit (State) value
   // speichern in datenbank
