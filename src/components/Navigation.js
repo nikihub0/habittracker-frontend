@@ -5,7 +5,7 @@ import Nav from "react-bootstrap/Nav";
 //import NavDropdown from "react-bootstrap/NavDropdown";
 import { useNavigate, Link } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
-import Button from "react-bootstrap/Button";
+//import Button from "react-bootstrap/Button";
 import { FaRegUserCircle } from "react-icons/fa";
 import NavDropdown from "react-bootstrap/NavDropdown";
 
@@ -19,14 +19,17 @@ const Navigation = () => {
     navigate("/signin");
   };
   return (
-    <Navbar fixed="top" bg="light" expand="lg">
+    <Navbar bg="dark" variant="dark">
       <Container>
-        <Navbar.Brand as={Link} to="/home">
+        <Navbar.Brand as={Link} to="/">
           Break Your Habits
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto">
+        <Navbar.Collapse
+          className="d-flex justify-content-end"
+          id="basic-navbar-nav"
+        >
+          <Nav>
             {/*<NavDropdown title="Heute" id="basic-nav-dropdown">
               
               <NavDropdown.Item href="/monat">Diesen Monat</NavDropdown.Item>
@@ -34,12 +37,12 @@ const Navigation = () => {
             </NavDropdown>*/}
             {!loggedIn && (
               <>
-                <Button variant="outline-primary" as={Link} to="/signin">
-                  Anmelden
-                </Button>
-                <Button as={Link} to="/registration">
-                  Registrieren
-                </Button>
+                <Nav.Link as={Link} to="/signin">
+                  Sign In
+                </Nav.Link>
+                <Nav.Link as={Link} to="/registration">
+                  Sign Up
+                </Nav.Link>
               </>
             )}
             {loggedIn && (
@@ -48,8 +51,8 @@ const Navigation = () => {
                   Home
                 </Nav.Link>
 
-                <Nav.Link as={Link} to="/info">
-                  Info
+                <Nav.Link as={Link} to="/motivation">
+                  Motivation
                 </Nav.Link>
 
                 <NavDropdown

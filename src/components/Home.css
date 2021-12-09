@@ -1,12 +1,83 @@
+@import url("https://fonts.googleapis.com/css2?family=Corinthia:wght@700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Corinthia&family=Gwendolyn&display=swap");
 .cardKlasse {
   cursor: pointer;
+  opacity: 1 !important;
+  z-index: 1;
 }
-.footer-container {
-  padding-top: 65px;
+.content {
+  box-sizing: border-box;
+  min-height: calc(100vh - 136px) !important;
 }
+
 ul {
   list-style-type: none;
+  margin: 20px 0 20px 0;
 }
 .modalbody {
   cursor: pointer;
+}
+.habitline {
+  min-width: 500px;
+  background-color: white;
+  opacity: 1 !important;
+  z-index: 1;
+}
+.board {
+  background-color: white;
+  opacity: 0.8;
+  z-index: -1;
+}
+
+.modalbody {
+  margin: 20px 100px;
+  background-color: rgb(245, 242, 241);
+  font-weight: 700;
+  opacity: 0.9;
+}
+.signinform {
+  padding-bottom: 5rem !important;
+  padding-top: 6rem !important;
+}
+
+.registerformcontrol {
+  width: 30rem;
+}
+.home {
+  opacity: 0.8;
+  z-index: -1;
+}
+.footer-pin {
+  position: relative;
+  left: 0;
+  bottom: 0;
+}
+.button {
+  margin-right: 0.5rem;
+}
+
+a.navbar-brand {
+  font-weight: 700;
+}
+
+.Navbar {
+  background-image: linear-gradient(to right, #e3c4c8, #b78e9a);
+}
+
+.p-5 {
+  font-weight: 700;
+}
+.inputcreate {
+  width: 100%;
+}
+.quote {
+  /* font-family: "Corinthia", cursive; */
+  font-family: "Gwendolyn", cursive;
+  font-size: 40px;
+  padding: 1rem;
+}
+
+.quoteandhabits {
+  background-color: #d7cad1;
+  opacity: 80%;
 }

@@ -3,6 +3,7 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
+import Container from "react-bootstrap/esm/Container";
 
 const SigninForm = () => {
   const [textinput, settextinput] = useState("");
@@ -38,34 +39,40 @@ const SigninForm = () => {
   };
 
   return (
-    <div>
-      {loggedIn ? <p>du bist eingeloggt</p> : <p>nicht eingeloggt</p>}
+    <Container className="d-flex flex-column justify-content-center border rounded shadow signinform align-items-center register mt-4">
+      {/*  {loggedIn ? <p>du bist eingeloggt</p> : <p>nicht eingeloggt</p>} */}
       <Form>
-        <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Label>Anmelden</Form.Label>
+        <Form.Group className="mb-4" controlId="formBasicEmail">
+          <Form.Label>Melde dich mit deiner Email-Adresse an.</Form.Label>
           <Form.Control
+            className="registerformcontrol"
             type="email"
-            placeholder="Email address"
+            placeholder="Email"
             onChange={(e) => settextinput(e.target.value)}
           />
         </Form.Group>
 
-        <Form.Group className="mb-3" controlId="formBasicPassword">
-          <Form.Label>Password</Form.Label>
+        <Form.Group className="mb-4" controlId="formBasicPassword">
+          <Form.Label>Passwort</Form.Label>
           <Form.Control
+            className="registerformcontrol"
             type="password"
             placeholder="Password"
             onChange={(e) => setpwinput(e.target.value)}
           />
         </Form.Group>
-        <Form.Group className="mb-3" controlId="formBasicCheckbox">
+        <Form.Group className="mb-4" controlId="formBasicCheckbox">
           <Form.Check type="checkbox" label="Remember me" />
         </Form.Group>
-        <Button variant="primary" type="submit" onClick={(e) => handleClick(e)}>
+        <Button
+          variant="outline-primary"
+          type="submit"
+          onClick={(e) => handleClick(e)}
+        >
           Anmelden
         </Button>
       </Form>
-    </div>
+    </Container>
   );
 };
 

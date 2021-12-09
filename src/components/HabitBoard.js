@@ -1,73 +1,66 @@
 import React from "react";
+
 import Button from "react-bootstrap/Button";
 //import Form from "react-bootstrap/Form";
-import ButtonGroup from "react-bootstrap/ButtonGroup";
-//import { useState } from "react";
+//import ButtonGroup from "react-bootstrap/ButtonGroup";
+/* import { useState } from "react";
+import { useWindowSize, useTimeout } from "react-use";
+import Confetti from "react-confetti"; */
+import GHabitItem from "./GHabitItem.js";
+import BHabitItem from "./BHabitItem.js";
+import OHabitItem from "./OHabitItem.js";
 
 const HabitBoard = ({
   gHabits,
   bHabits,
+  oHabits,
   handleDeleteGhabits,
   handleDeleteBhabits,
+  handleDeleteOhabits,
+  handleShowEditModal,
 }) => {
   return (
-    <div className="board border rounded p-4 my-5 mx-3 d-flex justify-content-center">
-      {!gHabits.length && !bHabits.length && <div>Please select a habit</div>}
-      {/* {gHabits.length} */}
-      <div>
-        <ul>
+    <>
+      <div className="d-flex flex-column board border rounded shadow mt-4  d-flex justify-content-center">
+        {!gHabits.length && !bHabits.length && !oHabits.length && (
+          <div className="p-5">What do you want to do to improve yourself?</div>
+        )}
+
+        <ul className="boardul">
+          {gHabits.length > 0 && (
+            <div className="d-flex justify-content-center"></div>
+          )}
+
           {gHabits?.map((gh) => (
-            <li className="d-flex listClass border rounded">
-              {gh.name}{" "}
-              {/* <Form>
-              {["checkbox"].map((type) => (
-                <div key={`default-${type}`} className="mb-3">
-                  <Form.Check
-                    type={type}
-                    id={`default-${type}`}
-                    label={`default ${type}`}
-                  />
-                </div>
-              ))}
-            </Form> */}
-              <ButtonGroup
-                className="d-flex justify-content-end "
-                aria-label="Basic example"
-              >
-                <Button variant="success">Left</Button>
-                <Button variant="primary">Middle</Button>
-                <Button
-                  variant="danger"
-                  onClick={() => handleDeleteGhabits(gh.id)}
-                >
-                  Right
-                </Button>
-              </ButtonGroup>
-            </li>
+            <GHabitItem
+              gh={gh}
+              handleDeleteGhabits={handleDeleteGhabits}
+              handleShowEditModal={handleShowEditModal}
+            />
           ))}
         </ul>
-
-        {/* {bHabits.length} */}
-        <ul>
+        <hr></hr>
+        <ul className="boardul">
+          {bHabits.length > 0 && (
+            <div className="d-flex justify-content-center"></div>
+          )}
           {bHabits &&
             bHabits.map((bh) => (
-              <li className="d-flex listClass border rounded">
-                {bh.name}{" "}
-                <ButtonGroup className="d-flex " aria-label="Basic example">
-                  <Button variant="success">Left</Button>
-                  <Button variant="primary">Middle</Button>
-                  <Button
-                    variant="danger"
-                    onClick={() => handleDeleteBhabits(bh.id)}
-                  >
-                    Delete
-                  </Button>
-                </ButtonGroup>
-              </li>
+              <BHabitItem bh={bh} handleDeleteBhabits={handleDeleteBhabits} />
+            ))}
+        </ul>
+        <hr></hr>
+        <ul className="boardul">
+          {oHabits.length > 0 && (
+            <div className="d-flex justify-content-center"></div>
+          )}
+          {oHabits &&
+            oHabits.map((oh) => (
+              <OHabitItem oh={oh} handleDeleteOhabits={handleDeleteOhabits} />
             ))}
         </ul>
       </div>
-    </div>
+    </>
   );
 };
 

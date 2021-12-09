@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import Container from "react-bootstrap/Container";
 import { Link, useNavigate } from "react-router-dom";
 import "./Register.css";
 import { AuthContext } from "../context/AuthContext";
@@ -38,38 +39,46 @@ const Register = () => {
   };
 
   return (
-    <div className="register">
+    <Container className="d-flex flex-column justify-content-center border rounded shadow signinform align-items-center register mt-4">
       <Form>
-        <Form.Group className="mb-3" controlId="formBasicEmail">
+        <Form.Group className="mb-4" controlId="formBasicEmail">
           <Form.Label>Mit deiner E-Mail-Adresse registrieren</Form.Label>
           <Form.Control
+            className="registerformcontrol"
             type="email"
             placeholder="Gib deine Email Adresse ein"
             onChange={(e) => settextinput(e.target.value)}
           />
-          <Form.Text className="text-muted">
-            Wir teilen deine Email mit niemandem.
-          </Form.Text>
         </Form.Group>
 
-        <Form.Group className="mb-3" controlId="formBasicPassword">
+        <Form.Group className="mb-4" controlId="formBasicPassword">
           <Form.Label>Passwort erstellen</Form.Label>
           <Form.Control
+            className="registerformcontrol mb-4"
             type="password"
             placeholder="Password"
             onChange={(e) => setpwinput(e.target.value)}
           />
+          <Button
+            variant="primary"
+            type="submit"
+            onClick={(e) => handleClick(e)}
+          >
+            Registrieren
+          </Button>
         </Form.Group>
 
-        <Button variant="primary" type="submit" onClick={(e) => handleClick(e)}>
-          Registrieren
-        </Button>
+        {/* <p>Already have an account?</p> */}
+        <Form.Label>
+          <Form.Text className="d-flex flex-column mb-4">
+            Already have an account?
+          </Form.Text>
+          <Button variant="outline-primary" as={Link} to="/signin">
+            Sign in
+          </Button>
+        </Form.Label>
       </Form>
-      <h4>Already have an account?</h4>
-      <Button as={Link} to="/signin" variant="primary">
-        Sign in
-      </Button>
-    </div>
+    </Container>
   );
 };
 
